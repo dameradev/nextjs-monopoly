@@ -18,13 +18,20 @@ export default async function handler(
 
     console.log(response.data[0].towns)
     const towns = response.data[0]?.towns ? response.data[0]?.towns.split(",") : []
-    towns.push(card)
+    const findTown = towns.find(town => town === card)
+    console.log(findTown)
+    if (findTown) { 
+      towns.splice(towns.indexOf(findTown), 1)
+    } else {
+
+      towns.push(card)
+    }
     // towns.push("dame")
     console.log(towns)
-    console.log()
+    
     // console.log()
     const res = await supabaseClient.from('players').update({ towns: towns.join(",") }).eq("id", currentPlayer.id)
-    console.log(res)
+    // console.log(res)
   }
 
   // return res.status(400).json({
