@@ -25,9 +25,11 @@ export default ({ }) => {
   const pay = (player, amount) => {
     const newPlayers = [...players]
     const currentPlayer = newPlayers.find(player => player.isOnTurn);
-    newPlayers[newPlayers.indexOf(player)].money += +amount;
     newPlayers[newPlayers.indexOf(currentPlayer)].money -= +amount;
 
+    if (player) {
+      newPlayers[newPlayers.indexOf(player)].money += +amount;
+    }
 
 
     fetch('/api/pay', {
@@ -202,7 +204,7 @@ export default ({ }) => {
               let towns = currentPlayer.towns.split(",")
               towns.push(card.id)
               newPlayers[newPlayers.indexOf(currentPlayer)].towns = towns.join(',')
-              
+
               // console.log()
               setPlayers(newPlayers)
 
@@ -214,7 +216,7 @@ export default ({ }) => {
                 }),
               })
             }}
-          
+
           >
             <p>Owned by: {players.find(player => player.towns?.split(',').includes(card.id))?.name}</p>
             <h2 className={`  text-${card.color}-100`}>{card.name}</h2>
