@@ -13,7 +13,7 @@ export default async function handler(
     .from('players')
       .select()
     response.data.forEach(async player => {
-      await supabaseClient.from('players').update({ money: 1500 }).eq("id", player.id)
+      await supabaseClient.from('players').update({ money: 1500, towns: '' }).eq("id", player.id)
     })
 
 

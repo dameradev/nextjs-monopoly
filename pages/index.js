@@ -14,12 +14,12 @@ export async function fetcher(
 export default ({ }) => {
 
   const [players, setPlayers] = useState([
-    { name: "Dame", money: 1500, isOnTurn: true, customId: 1, payToPlayer: false },
-    { name: "Viko", money: 1500, isOnTurn: false, customId: 2, payToPlayer: false },
-    { name: "Goki", money: 1500, isOnTurn: false, customId: 3, payToPlayer: false },
-    { name: "Gjose", money: 1500, isOnTurn: false, customId: 4, payToPlayer: false },
-    { name: "Nela", money: 1500, isOnTurn: false, customId: 5, payToPlayer: false },
-    { name: "Denicija", money: 1500, isOnTurn: false, customId: 6, payToPlayer: false },
+    { name: "Dame", money: 1500, isOnTurn: true, customId: 1, payToPlayer: false, towns: '' },
+    { name: "Viko", money: 1500, isOnTurn: false, customId: 2, payToPlayer: false, towns: '' },
+    { name: "Goki", money: 1500, isOnTurn: false, customId: 3, payToPlayer: false, towns: '' },
+    { name: "Gjose", money: 1500, isOnTurn: false, customId: 4, payToPlayer: false, towns: '' },
+    { name: "Nela", money: 1500, isOnTurn: false, customId: 5, payToPlayer: false, towns: '' },
+    { name: "Denicija", money: 1500, isOnTurn: false, customId: 6, payToPlayer: false, towns: '' },
   ])
 
   const pay = (player, amount) => {
@@ -59,6 +59,7 @@ export default ({ }) => {
   const noPlayerSelected = !players.find(player => player.payToPlayer);
 
 
+  console.log(players)
   return <div className='flex flex-col items-center mt-4' onClick={() => {
     setTimer(10000)
     // set all players to not pay
@@ -148,9 +149,6 @@ export default ({ }) => {
           const currentPlayer = players.find(player => player.isOnTurn);
           newPlayers[newPlayers.indexOf(currentPlayer)].money += +take;
           setPlayers(newPlayers)
-
-
-
           fetch('/api/take', {
             method: 'POST',
             body: JSON.stringify({
@@ -195,7 +193,30 @@ export default ({ }) => {
     <ul className='grid grid-cols-2'>
       {cards.sort((a, b) => b.posistion > a.posistion ? -1 : 1).map(
         (card, index) => (
-          <li key={index} className={`px-2 mt-10 w-full flex flex-col gap-2   `}>
+          <li key={index} className={`cursor-pointer px-2 mt-10 w-full flex flex-col gap-2   `}
+            onClick={() => {
+              const newPlayers = [...players]
+              const currentPlayer = players.find(player => player.isOnTurn);
+
+              currentPlayer.towns.split(",").push(card.id)
+              let towns = currentPlayer.towns.split(",")
+              towns.push(card.id)
+              newPlayers[newPlayers.indexOf(currentPlayer)].towns = towns.join(',')
+              
+              // console.log()
+              setPlayers(newPlayers)
+
+              fetch('/api/buy', {
+                method: 'POST',
+                body: JSON.stringify({
+                  currentPlayer,
+                  card: card.id
+                }),
+              })
+            }}
+          
+          >
+            <p>Owned by: {players.find(player => player.towns?.split(',').includes(card.id))?.name}</p>
             <h2 className={`  text-${card.color}-100`}>{card.name}</h2>
 
             <p>Price: {card.price}</p>
