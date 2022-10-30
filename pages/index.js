@@ -29,10 +29,20 @@ export default ({ }) => {
     newPlayers[newPlayers.indexOf(currentPlayer)].money -= +amount;
 
 
+
+    fetch('/api/pay', {
+      method: 'POST',
+      body: JSON.stringify({
+        currentPlayer: newPlayers.find(player => player.isOnTurn),
+        payToPlayer: newPlayers.find(player => player.payToPlayer),
+      }),
+    })
+
     setPlayers(newPlayers)
   }
 
   const [amount, setAmount] = useState(0)
+  const [take, setTake] = useState(0)
 
   const [timer, setTimer] = useState(10000)
 
@@ -46,17 +56,29 @@ export default ({ }) => {
     }
   }, [data]);
 
+  const noPlayerSelected = !players.find(player => player.payToPlayer);
 
-  return <div className='flex flex-col items-center' onClick={() => setTimer(10000)}>
-    <h1 className='p-2'> Players</h1>
+
+  return <div className='flex flex-col items-center mt-4' onClick={() => {
+    setTimer(10000)
+    // set all players to not pay
+
+
+  }}>
+    {/* <h1 className='p-2'> Players</h1> */}
+
     <button
+      className='bg-green-500 p-2 rounded-lg text-white my-10 text-2xl'
       onClick={() => {
-        // set all players money to 1500
         const newPlayers = [...players]
-        newPlayers.forEach(player => player.money = 1500)
+        newPlayers.map(player => {
+          player.payToPlayer = false
+        })
         setPlayers(newPlayers)
       }}
-    >Reset game</button>
+    >BANK</button>
+
+
     {/* <p onClick={()=>{setPlayers()}}>Bank</p> */}
     <button
       className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mb-4'
@@ -92,7 +114,7 @@ export default ({ }) => {
     </button>
 
 
-    <div>
+    <div className='grid grid-cols-2 px-4 mb-4'>
       <input
         className='bg-gray-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mx-4 max-w-[10rem]  '
         type="number"
@@ -109,6 +131,36 @@ export default ({ }) => {
           pay(payToPlayer, amount)
         }}>Pay</button>
     </div>
+    {noPlayerSelected && <div className='grid grid-cols-2 px-4'>
+      <input
+        className='bg-gray-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mx-4 max-w-[10rem]  '
+        type="number"
+        placeholder="Amount"
+        onChange={(e) => {
+          setTake(e.target.value)
+        }}
+        value={take}
+      />
+      <button
+        className='bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded'
+        onClick={() => {
+          const newPlayers = [...players]
+          const currentPlayer = players.find(player => player.isOnTurn);
+          newPlayers[newPlayers.indexOf(currentPlayer)].money += +take;
+          setPlayers(newPlayers)
+
+
+
+          fetch('/api/take', {
+            method: 'POST',
+            body: JSON.stringify({
+              currentPlayer: newPlayers.find(player => player.isOnTurn),
+            }),
+          })
+        }}>
+        Take
+      </button>
+    </div>}
 
     <ul className='grid grid-cols-2 pt-4'>
       {
@@ -158,6 +210,26 @@ export default ({ }) => {
 
         ))}
     </ul>
+
+    <button
+
+      className='mt-20'
+      onClick={() => {
+        // set all players money to 1500
+        const newPlayers = [...players]
+        newPlayers.forEach(player => player.money = 1500)
+        setPlayers(newPlayers)
+        fetch('/api/reset', {
+          method: 'POST',
+          // body: JSON.stringify({
+          //   currentPlayer: newPlayers.find(player => player.isOnTurn),
+          //   payToPlayer: newPlayers.find(player => player.payToPlayer),
+          // }),
+        })
+      }}
+    >
+      Reset game
+    </button>
 
   </div>
 

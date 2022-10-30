@@ -1,6 +1,6 @@
 export default [
   {
-    name: "Mediterranean Avenue",
+    name: "Goriška brda",
     id: "mediterraneanave",
     posistion: 2,
     price: 60,
@@ -17,7 +17,7 @@ export default [
     ownedby: -1
   },
   {
-    name: "Baltic Avenue",
+    name: "Slovenske gorice",
     id: "balticave",
     posistion: 4,
     price: 60,
@@ -34,7 +34,7 @@ export default [
     ownedby: -1
   },
   {
-    name: "Oriental Avenue",
+    name: "Bogensperk",
     id: "orientalave",
     posistion: 7,
     price: 100,
@@ -50,7 +50,7 @@ export default [
     group: "lightgreen"
   },
   {
-    name: "Vermont Avenue",
+    name: "Predjamski grad",
     id: "vermontave",
     posistion: 9,
     price: 100,
@@ -66,7 +66,7 @@ export default [
     group: "lightgreen"
   },
   {
-    name: "Connecticut Avenue",
+    name: "Otočec",
     id: "connecticutave",
     posistion: 10,
     price: 120,
@@ -82,7 +82,7 @@ export default [
     group: "lightgreen"
   },
   {
-    name: "St. Charles Place",
+    name: "Terme Catež",
     id: "stcharlesplace",
     posistion: 12,
     price: 140,
@@ -98,7 +98,7 @@ export default [
     group: "Violet"
   },
   {
-    name: "States Avenue",
+    name: "Doljenske toplice",
     id: "statesave",
     posistion: 14,
     price: 140,
@@ -114,7 +114,7 @@ export default [
     group: "Violet"
   },
   {
-    name: "Virginia Avenue",
+    name: "Moravske toplice",
     id: "virginiaave",
     posistion: 15,
     price: 160,
@@ -130,7 +130,7 @@ export default [
     group: "Violet"
   },
   {
-    name: "St. James Place",
+    name: "Športni park Stožice",
     id: "stjamesplace",
     posistion: 17,
     price: 180,
@@ -146,7 +146,7 @@ export default [
     group: "Orange"
   },
   {
-    name: "Tennessee Avenue",
+    name: "Planica",
     id: "tennesseeave",
     posistion: 19,
     price: 180,
@@ -162,7 +162,7 @@ export default [
     group: "Orange"
   },
   {
-    name: "New York Avenue",
+    name: "Mariborsko pohorje",
     id: "newyorkave",
     posistion: 20,
     price: 200,
@@ -178,7 +178,7 @@ export default [
     group: "Orange"
   },
   {
-    name: "Kentucky Avenue",
+    name: "Trenta",
     id: "kentuckyave",
     posistion: 22,
     price: 220,
@@ -194,7 +194,7 @@ export default [
     group: "Red"
   },
   {
-    name: "Indiana Avenue",
+    name: "Rakov skočjan",
     id: "indianaave",
     posistion: 24,
     price: 220,
@@ -210,7 +210,7 @@ export default [
     group: "Red"
   },
   {
-    name: "Illinois Avenue",
+    name: "Logarska dolina",
     id: "illinoisave",
     posistion: 25,
     price: 240,
@@ -226,7 +226,7 @@ export default [
     group: "Red"
   },
   {
-    name: "Atlantic Avenue",
+    name: "Lipica",
     id: "atlanticave",
     posistion: 27,
     price: 260,
@@ -242,7 +242,7 @@ export default [
     group: "Yellow"
   },
   {
-    name: "Ventnor Avenue",
+    name: "Volčji potok",
     id: "ventnorave",
     posistion: 28,
     price: 260,
@@ -258,7 +258,7 @@ export default [
     group: "Yellow"
   },
   {
-    name: "Marvin Gardens",
+    name: "Postojnska jama",
     id: "marvingardens",
     posistion: 30,
     price: 280,
@@ -274,7 +274,7 @@ export default [
     group: "Yellow"
   },
   {
-    name: "Pacific Avenue",
+    name: "Cerkniško jezero",
     id: "pacificave",
     posistion: 32,
     price: 300,
@@ -290,7 +290,7 @@ export default [
     group: "darkgreen"
   },
   {
-    name: "North Carolina Avenue",
+    name: "Bohinj",
     id: "northcarolinaave",
     posistion: 33,
     price: 300,
@@ -306,7 +306,7 @@ export default [
     group: "darkgreen"
   },
   {
-    name: "Pennsylvania Avenue",
+    name: "Bled",
     id: "pennsylvaniaave",
     posistion: 35,
     price: 320,
@@ -322,7 +322,7 @@ export default [
     group: "darkgreen"
   },
   {
-    name: "Park Place",
+    name: "Piran",
     id: "parkplace",
     posistion: 38,
     price: 350,
@@ -338,7 +338,7 @@ export default [
     group: "darkblue"
   },
   {
-    name: "Boardwalk",
+    name: "Portorož",
     id: "boardwalk",
     posistion: 40,
     price: 400,

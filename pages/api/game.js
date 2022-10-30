@@ -41,9 +41,9 @@ export default async function handler(
     // .update({ name: 'Australia' })
     // .eq('id', 1)
     await supabaseClient.from('players').update({ isOnTurn: true }).eq("id", nextPlayer.id)
-    const res = await supabaseClient.from('players').update({ money: currentPlayer.money, isOnTurn: false }).eq("id", currentPlayer.id)
-    await supabaseClient.from('players').update({ money: payToPlayer.money }).eq("id", payToPlayer.id)
-    console.log(res)
+    const res = await supabaseClient.from('players').update({  isOnTurn: false }).eq("id", currentPlayer.id)
+    
+  
 
   }
 
