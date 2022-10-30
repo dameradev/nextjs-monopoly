@@ -1,0 +1,29 @@
+datasource db {
+  provider = "sqlite"
+  url      = "file:dev.db"
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model Song {
+  id       Int     @id @default(autoincrement())
+  name     String
+  artist   Artist? @relation(fields: [artistId], references: [id])
+  artistId Int?
+}
+
+model Artist {
+  id    Int    @id @default(autoincrement())
+  name  String @unique
+  songs Song[]
+}
+
+model Player {
+  id       Int     @id @default(autoincrement())
+  name     String  @unique
+  money    Float   @default(1500)
+  isOnTurn Boolean @default(false)
+}
+
