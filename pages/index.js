@@ -30,13 +30,6 @@ export default ({ }) => {
   const pay = (player, amount) => {
     const newPlayers = [...players]
 
-    // const currentPlayer = newPlayers.find(player => player.isOnTurn);
-    newPlayers[newPlayers.indexOf(currentPlayer)].money -= +amount;
-
-    if (player) {
-      newPlayers[newPlayers.indexOf(player)].money += +amount;
-    }
-
 
     fetch('/api/pay', {
       method: 'POST',
