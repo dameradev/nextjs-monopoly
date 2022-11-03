@@ -41,8 +41,9 @@ export default ({ }) => {
     fetch('/api/pay', {
       method: 'POST',
       body: JSON.stringify({
-        currentPlayer: newPlayers.find(player => player.isOnTurn),
+        currentPlayer,
         payToPlayer: newPlayers.find(player => player.payToPlayer),
+        price: amount
       }),
     })
 
@@ -174,7 +175,7 @@ export default ({ }) => {
           fetch('/api/take', {
             method: 'POST',
             body: JSON.stringify({
-              currentPlayer: newPlayers.find(player => player.isOnTurn),
+              currentPlayer
             }),
           })
         }}>
