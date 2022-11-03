@@ -20,7 +20,6 @@ export default async function handler(
     await supabaseClient.from('players').update({ money: player?.money - price }).eq("id", currentPlayer.id)
     const towns = response.data[0]?.towns ? response.data[0]?.towns.split(",") : []
     const findTown = towns.find(town => town === card)
-    console.log(findTown)
     if (findTown) { 
       towns.splice(towns.indexOf(findTown), 1)
       await supabaseClient.from('players').update({ money: player?.money + price }).eq("id", currentPlayer.id)

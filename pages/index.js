@@ -168,7 +168,7 @@ export default ({ }) => {
         className='bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded'
         onClick={() => {
           const newPlayers = [...players]
-          const currentPlayer = players.find(player => player.isOnTurn);
+          // const currentPlayer = players.find(player => player.isOnTurn);
           newPlayers[newPlayers.indexOf(currentPlayer)].money += +take;
           setPlayers(newPlayers)
           fetch('/api/take', {
@@ -243,7 +243,7 @@ export default ({ }) => {
           <li key={index} className={`cursor-pointer   px-2 bg-${card.group}-200 mt-10 w-full flex flex-col gap-2   `}
             onClick={() => {
               const newPlayers = [...players]
-              const currentPlayer = players.find(player => player.isOnTurn);
+              // const currentPlayer = players.find(player => player.isOnTurn);
 
               currentPlayer.towns.split(",").push(card.id)
               newPlayers[newPlayers.indexOf(currentPlayer)].money -= +amount;
