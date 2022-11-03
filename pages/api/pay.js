@@ -8,7 +8,7 @@ export default async function handler(
 
 
   if (req.method === 'POST') {
-    const { currentPlayer, payToPlayer, nextPlayer } = JSON.parse(req.body);
+    const { currentPlayer, payToPlayer, nextPlayer, priceF } = JSON.parse(req.body);
 
     await supabaseClient.from('players').update({ money: currentPlayer?.money - price }).eq("id", currentPlayer.id)
     if (payToPlayer) await supabaseClient.from('players').update({ money: payToPlayer.money + price }).eq("id", payToPlayer.id) 
