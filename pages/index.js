@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react"
 import useSWR from 'swr'
 import cards from '../cards';
+import communityChest from '../communityChest';
+import chance from '../chance';
 import { supabaseClient } from '../lib/useSupabase';
 export async function fetcher(
   input,
@@ -12,6 +14,9 @@ export async function fetcher(
 
 
 export default ({ }) => {
+  const [currentPlayer, setCurrentPlayer] = useState()
+  const [props, setProps] = useState(cards);
+
 
   const [players, setPlayers] = useState([
     { name: "Dame", money: 1500, isOnTurn: true, customId: 1, payToPlayer: false, towns: '' },
@@ -24,7 +29,8 @@ export default ({ }) => {
 
   const pay = (player, amount) => {
     const newPlayers = [...players]
-    const currentPlayer = newPlayers.find(player => player.isOnTurn);
+
+    // const currentPlayer = newPlayers.find(player => player.isOnTurn);
     newPlayers[newPlayers.indexOf(currentPlayer)].money -= +amount;
 
     if (player) {
@@ -61,7 +67,6 @@ export default ({ }) => {
   const noPlayerSelected = !players.find(player => player.payToPlayer);
 
 
-  console.log(players)
   return <div className='flex flex-col items-center mt-4' onClick={() => {
     setTimer(10000)
     // set all players to not pay
@@ -81,9 +86,24 @@ export default ({ }) => {
       }}
     >BANK</button>
 
+    <div className='flex gap-2'>
+      <button
+        className='bg-orange-500 p-2 rounded-lg text-white mb-4 text-xl'
+        onClick={() => {
+          alert(chance[Math.floor(Math.random() * chance.length)].title)
+        }}
+      >Chance</button>
+      <button
+        className='bg-blue-500 p-2 rounded-lg text-white mb-4 text-xl'
+        onClick={() => {
+          alert(communityChest[Math.floor(Math.random() * communityChest.length)].title)
+        }}
+      >Sandce</button>
+    </div>
+
 
     {/* <p onClick={()=>{setPlayers()}}>Bank</p> */}
-    <button
+    {/* <button
       className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mb-4'
       onClick={() => {
 
@@ -114,7 +134,7 @@ export default ({ }) => {
 
       }}>
       NEXT PLAYER
-    </button>
+    </button> */}
 
 
     <div className='grid grid-cols-2 px-4 mb-4'>
@@ -168,12 +188,13 @@ export default ({ }) => {
           <li className={`p-8
           text-white
           cursor-pointer
-            ${player.isOnTurn ? 'bg-green-500' : 'bg-gray-500'}
+            ${currentPlayer?.id === player.id ? 'bg-green-500' : 'bg-gray-500'}
             ${player.payToPlayer ? 'bg-red-500' : ''}
           `} key={player.name}
             onClick={() => {
               const newPlayers = [...players]
 
+              if (!currentPlayer) setCurrentPlayer(player)
               const currentPayToPLayer = newPlayers.find(player => player.payToPlayer);
               if (currentPayToPLayer) {
                 newPlayers[newPlayers.indexOf(currentPayToPLayer)].payToPlayer = false
@@ -191,18 +212,51 @@ export default ({ }) => {
         ))
       }
     </ul>
+    <div className='flex mt-4 gap-2'>
+      <button
 
+        className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded'
+        onClick={() => {
+          let newProps = [...props]
+          newProps = newProps.filter(card => currentPlayer.towns.includes(card.id))
+          
+          setProps(newProps)
+         }
+        }>
+        Show My cards
+      </button>
+      <button
+
+        className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded'
+        onClick={() => {
+
+          
+          setProps(cards)
+         }
+        }>
+        Show all cards
+      </button>
+    </div>
     <ul className='grid grid-cols-2'>
-      {cards.sort((a, b) => b.posistion > a.posistion ? -1 : 1).map(
+      {props.map(
         (card, index) => (
-          <li key={index} className={`cursor-pointer px-2 mt-10 w-full flex flex-col gap-2   `}
+          <li key={index} className={`cursor-pointer   px-2 bg-${card.group}-200 mt-10 w-full flex flex-col gap-2   `}
             onClick={() => {
               const newPlayers = [...players]
               const currentPlayer = players.find(player => player.isOnTurn);
 
               currentPlayer.towns.split(",").push(card.id)
+              newPlayers[newPlayers.indexOf(currentPlayer)].money -= +amount;
               let towns = currentPlayer.towns.split(",")
-              towns.push(card.id)
+              const findTown = towns.find(town => town === card.id)
+              console.log(towns)
+              console.log(findTown)
+              if (findTown) {
+                towns.splice(towns.indexOf(findTown), 1)
+              } else {
+
+                towns.push(card.id)
+              }
               newPlayers[newPlayers.indexOf(currentPlayer)].towns = towns.join(',')
 
               // console.log()
@@ -212,14 +266,15 @@ export default ({ }) => {
                 method: 'POST',
                 body: JSON.stringify({
                   currentPlayer,
-                  card: card.id
+                  card: card.id,
+                  price: card.price
                 }),
               })
             }}
 
           >
             <p>Owned by: {players.find(player => player.towns?.split(',').includes(card.id))?.name}</p>
-            <h2 className={`  text-${card.color}-100`}>{card.name}</h2>
+            <h2 className={`  bg-${card.color}-100`}>{card.name}</h2>
 
             <p>Price: {card.price}</p>
             {card.rent && <p>Rent: {card.rent}</p>}

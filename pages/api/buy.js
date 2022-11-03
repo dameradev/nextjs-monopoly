@@ -8,7 +8,7 @@ export default async function handler(
 
 
   if (req.method === 'POST') {
-    const { currentPlayer, card } = JSON.parse(req.body);
+    const { currentPlayer, card, price } = JSON.parse(req.body);
 
     const response = await supabaseClient
       .from('players')
@@ -16,12 +16,14 @@ export default async function handler(
       .select()
       .eq("id", currentPlayer.id)
 
-    console.log(response.data[0].towns)
+    const player = response.data[0]
+    await supabaseClient.from('players').update({ money: player?.money - price }).eq("id", currentPlayer.id)
     const towns = response.data[0]?.towns ? response.data[0]?.towns.split(",") : []
     const findTown = towns.find(town => town === card)
     console.log(findTown)
     if (findTown) { 
       towns.splice(towns.indexOf(findTown), 1)
+      await supabaseClient.from('players').update({ money: player?.money + price }).eq("id", currentPlayer.id)
     } else {
 
       towns.push(card)

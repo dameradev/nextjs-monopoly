@@ -1,3 +1,4 @@
+
 export default [
   {
     name: "Goriška brda",
@@ -13,7 +14,7 @@ export default [
       250
     ],
     housecost: 50,
-    color: "blue",
+    group: "amber",
     ownedby: -1
   },
   {
@@ -30,7 +31,7 @@ export default [
       450
     ],
     housecost: 50,
-    group: "Purple",
+    group: "amber",
     ownedby: -1
   },
   {
@@ -47,7 +48,7 @@ export default [
       550
     ],
     housecost: 50,
-    group: "lightgreen"
+    group: "blue"
   },
   {
     name: "Predjamski grad",
@@ -63,7 +64,7 @@ export default [
       550
     ],
     housecost: 50,
-    group: "lightgreen"
+    group: "blue"
   },
   {
     name: "Otočec",
@@ -79,7 +80,7 @@ export default [
       600
     ],
     housecost: 50,
-    group: "lightgreen"
+    group: "blue"
   },
   {
     name: "Terme Catež",
@@ -95,7 +96,7 @@ export default [
       750
     ],
     housecost: 100,
-    group: "Violet"
+    group: "purple"
   },
   {
     name: "Doljenske toplice",
@@ -111,7 +112,7 @@ export default [
       750
     ],
     housecost: 100,
-    group: "Violet"
+    group: "purple"
   },
   {
     name: "Moravske toplice",
@@ -127,7 +128,7 @@ export default [
       900
     ],
     housecost: 100,
-    group: "Violet"
+    group: "purple"
   },
   {
     name: "Športni park Stožice",
@@ -143,7 +144,7 @@ export default [
       950
     ],
     housecost: 100,
-    group: "Orange"
+    group: "orange"
   },
   {
     name: "Planica",
@@ -159,7 +160,7 @@ export default [
       950
     ],
     housecost: 100,
-    group: "Orange"
+    group: "orange"
   },
   {
     name: "Mariborsko pohorje",
@@ -175,7 +176,7 @@ export default [
       1000
     ],
     housecost: 100,
-    group: "Orange"
+    group: "orange"
   },
   {
     name: "Trenta",
@@ -191,7 +192,7 @@ export default [
       1050
     ],
     housecost: 150,
-    group: "Red"
+    group: "red"
   },
   {
     name: "Rakov skočjan",
@@ -207,7 +208,7 @@ export default [
       1050
     ],
     housecost: 150,
-    group: "Red"
+    group: "red"
   },
   {
     name: "Logarska dolina",
@@ -223,7 +224,7 @@ export default [
       1100
     ],
     housecost: 150,
-    group: "Red"
+    group: "red"
   },
   {
     name: "Lipica",
@@ -239,7 +240,7 @@ export default [
       1150
     ],
     housecost: 150,
-    group: "Yellow"
+    group: "yellow"
   },
   {
     name: "Volčji potok",
@@ -255,7 +256,7 @@ export default [
       1150
     ],
     housecost: 150,
-    group: "Yellow"
+    group: "yellow"
   },
   {
     name: "Postojnska jama",
@@ -271,7 +272,7 @@ export default [
       1200
     ],
     housecost: 150,
-    group: "Yellow"
+    group: "yellow"
   },
   {
     name: "Cerkniško jezero",
@@ -287,7 +288,7 @@ export default [
       1275
     ],
     housecost: 200,
-    group: "darkgreen"
+    group: "green"
   },
   {
     name: "Bohinj",
@@ -303,7 +304,7 @@ export default [
       1275
     ],
     housecost: 200,
-    group: "darkgreen"
+    group: "green"
   },
   {
     name: "Bled",
@@ -319,7 +320,7 @@ export default [
       1400
     ],
     housecost: 200,
-    group: "darkgreen"
+    group: "green"
   },
   {
     name: "Piran",
@@ -335,7 +336,7 @@ export default [
       1500
     ],
     housecost: 200,
-    group: "darkblue"
+    group: "indigo"
   },
   {
     name: "Portorož",
@@ -351,7 +352,7 @@ export default [
       2000
     ],
     housecost: 200,
-    group: "darkblue"
+    group: "indigo"
   },
   {
     name: "Electric Company",
@@ -384,7 +385,7 @@ export default [
     averageProbability: 2.72905
   },
   {
-    name: "Reading Railroad",
+    name: "Jesenice",
     id: "readingrailroad",
     posistion: 6,
     price: 200,
@@ -400,7 +401,7 @@ export default [
     averageProbability: 2.88205
   },
   {
-    name: "Pennsylvania Railroad",
+    name: "Glavni kolodvor ljubljana",
     id: "pennsylvaniarailroad",
     posistion: 16,
     price: 200,
@@ -417,7 +418,7 @@ export default [
     averageProbability: 2.7777000000000003
   },
   {
-    name: "B. & O. Railroad",
+    name: "Zidani most",
     id: "borailroad",
     posistion: 26,
     price: 200,
@@ -428,7 +429,7 @@ export default [
     averageProbability: 2.975
   },
   {
-    name: "Short Line Railroad",
+    name: "Ljubljana",
     id: "shortlinerailroad",
     posistion: 36,
     price: 200,
